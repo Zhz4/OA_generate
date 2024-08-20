@@ -1,0 +1,101 @@
+{
+  "_comment": "这个配置文件包含用户相关的标签和工具按钮",
+  "form_item_list": [
+    {
+      "label": "工号",
+      "key": "user"
+    },
+    {
+      "label": "姓名",
+      "key": "user"
+    },
+    {
+      "label": "部门",
+      "key": "user"
+    },
+    {
+      "label": "职位",
+      "key": "user"
+    },
+    {
+      "label": "入职时间",
+      "key": "user"
+    },
+    {
+      "label": "是否在职",
+      "key": "user"
+    }
+  ],
+  "tool_button_list": [
+    {
+      "button_name": "导入数据",
+      "handler": "handleInput",
+      "icon_component": "ArrowDownCircleOutline"
+    },
+    {
+      "button_name": "导出数据",
+      "handler": "handleExport",
+      "icon_component": "ArrowDownCircleOutline"
+    },
+    {
+      "button_name": "批量删除",
+      "handler": "handleBatchDelete",
+      "icon_component": "ArrowDownCircleOutline"
+    },
+    {
+      "button_name": "批量修改",
+      "handler": "handleBatchEdit",
+      "icon_component": "ArrowDownCircleOutline"
+    }
+  ],
+  "table_list": [
+    {
+      "label": "工号",
+      "key": "user"
+    },
+    {
+      "label": "姓名",
+      "key": "hireDate"
+    },
+    {
+      "label": "部门",
+      "key": "contractStart"
+    },
+    {
+      "label": "职位",
+      "key": "renewalCount"
+    },
+    {
+      "label": "入职日期",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "最近续签状态",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "第一次劳动合同期限",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "第二次劳动合同期限",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "第三次劳动合同期限",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "第四次劳动合同期限",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "第五次劳动合同期限",
+      "key": "renewalMethod"
+    },
+    {
+      "label": "备注",
+      "key": "renewalMethod"
+    }
+  ]
+}
