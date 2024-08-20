@@ -98,7 +98,8 @@ def out_file(out_put_name, write_file):
 
 
 def run():
-    print('开始')
+    print('======开始=========')
     out_file('index.vue', template() + script() + style())
     table = tableConfig_generate()
     out_file("tableConfig.jsx", table)
+    print('====== 代码生成完成，请到output/ 文件夹中查看 =========')
