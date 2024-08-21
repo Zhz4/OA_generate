@@ -49,11 +49,14 @@ def script_main_template():
         const show = ref(false)
         const form = ref({})
         
+        const emit = defineEmits(['success'])
+        
         /**
          * 提交
          */
         function handleSubmit() {
           console.log("提交")
+          emit('success')
         }
         
         defineExpose({
