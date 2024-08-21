@@ -80,3 +80,7 @@ main_template = Template("""
 </template>
 """)
 
+# Modal模版
+modal_template = Template("""
+<EditModal ref="editModalRef" @success="queryData" />
+""")

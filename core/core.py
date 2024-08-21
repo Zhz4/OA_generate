@@ -2,14 +2,14 @@ import os
 import json
 from template.vue_template import filter_wrap_template, form_item_template, main_template, tool_wrap_template, \
     table_page, \
-    button_template
+    button_template, modal_template
 from template.script_template import import_icon_template, import_column_template, hooks_template, script_main_template, \
     search_template, tool_handler_template
 from template.table_template import generate_columns
 from template.style_template import style_main_template
 
 # 读取配置
-with open('config.json', 'r', encoding='utf-8') as f:
+with open('./config/main_config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 # 获取配置项
 form_item_list = config['form_item_list']
@@ -30,7 +30,7 @@ def template():
     tool_wrap = tool_wrap_template.substitute(tool_wrap=tool_button)
 
     filter_wrap = filter_wrap_template.substitute(form_item=form_item, tool_wrap=tool_wrap)
-    return main_template.substitute(main=filter_wrap + table_page)
+    return main_template.substitute(main=filter_wrap + table_page + modal_template.substitute())
 
 
 # vue script部分
@@ -65,7 +65,8 @@ def script():
     search_string = search_template.substitute()
 
     # 导入主要模版
-    script_main_string = script_main_template.substitute(import_template=import_string,
+    editImport = "import EditModal from './components/EditModal.vue'"
+    script_main_string = script_main_template.substitute(import_template=import_string + editImport,
                                                          other_template=search_string + tool_handler_str)
     return script_main_string
 
@@ -83,7 +84,7 @@ def tableConfig_generate():
 # 写入文件
 def out_file(out_put_name, write_file):
     # 固定的文件夹名
-    dir_name = 'output'
+    dir_name = './output'
 
     # 创建文件夹（如果不存在的话）
     if not os.path.exists(dir_name):
