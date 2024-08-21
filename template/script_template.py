@@ -24,6 +24,11 @@ const minXScroll = computed(() => {
 })
 
 /**
+ * 选中行
+ */
+const selectIds = ref([])
+
+/**
  * 删除
  */
 function handleDelete(row){

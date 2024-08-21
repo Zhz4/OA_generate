@@ -21,7 +21,7 @@ filter_wrap_template = Template("""
 
 # form_item 模版 -- form_item_label
 form_item_template = Template("""<n-form-item label="${form_item_label}">
-  <n-input v-model:value="searchParams.${form_item_key}" type="text" />
+  <n-input v-model:value="searchParams.${form_item_key}" type="text" clearable/>
 </n-form-item>
 """)
 
@@ -35,7 +35,7 @@ tool_wrap_template = Template("""
 """)
 
 # button 模版 --- button_name
-button_template = Template("""<n-button type="primary" :loading="loading" @click="${handler}">
+button_template = Template("""<n-button type="primary" @click="${handler}">
     <template #icon>
       <n-icon :component="${icon_component}" />
     </template>
@@ -47,6 +47,7 @@ button_template = Template("""<n-button type="primary" :loading="loading" @click
 table_page = """
     <div class="table_wrap">
       <n-data-table
+        v-model:checked-row-keys="selectIds"
         class="page_table"
         :columns="columns"
         :single-line="false"
