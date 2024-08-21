@@ -3,27 +3,31 @@
   "form_item_list": [
     {
       "label": "工号",
-      "key": "user"
+      "key": "jobNum"
     },
     {
       "label": "姓名",
-      "key": "user"
+      "key": "name"
     },
     {
       "label": "部门",
-      "key": "user"
+      "key": "deptName"
     },
     {
       "label": "职位",
-      "key": "user"
+      "key": "positionName"
     },
     {
       "label": "入职时间",
-      "key": "user"
+      "key": "entryDate"
     },
     {
       "label": "是否在职",
       "key": "user"
+    },
+    {
+      "label": "最近合同状态",
+      "key": "latestContractStatus"
     }
   ],
   "tool_button_list": [
@@ -51,51 +55,31 @@
   "table_list": [
     {
       "label": "工号",
-      "key": "user"
+      "key": "jobNum"
     },
     {
       "label": "姓名",
-      "key": "hireDate"
+      "key": "name"
     },
     {
       "label": "部门",
-      "key": "contractStart"
+      "key": "deptName"
     },
     {
       "label": "职位",
-      "key": "renewalCount"
+      "key": "positionName"
     },
     {
       "label": "入职日期",
-      "key": "renewalMethod"
+      "key": "entryDate"
     },
     {
       "label": "最近续签状态",
-      "key": "renewalMethod"
+      "key": "latestContractStatus"
     },
     {
-      "label": "第一次劳动合同期限",
-      "key": "renewalMethod"
-    },
-    {
-      "label": "第二次劳动合同期限",
-      "key": "renewalMethod"
-    },
-    {
-      "label": "第三次劳动合同期限",
-      "key": "renewalMethod"
-    },
-    {
-      "label": "第四次劳动合同期限",
-      "key": "renewalMethod"
-    },
-    {
-      "label": "第五次劳动合同期限",
-      "key": "renewalMethod"
-    },
-    {
-      "label": "备注",
-      "key": "renewalMethod"
+      "label": "劳动合同期限详情",
+      "key": "details"
     }
   ]
 }
