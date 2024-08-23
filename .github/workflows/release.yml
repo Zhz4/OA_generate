@@ -1,6 +1,7 @@
-name: Build and Release EXE  # 工作流名称
+name: release  # 工作流名称
 
 on:
+  workflow_dispatch:  # 这个触发器允许手动运行工作流
   push:
     tags:
       - 'v*.*'  # 只有在推送符合此模式的标签（如 v1.0.0）时，才会触发此工作流
