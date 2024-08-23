@@ -7,25 +7,33 @@
 其中`edit_config.json`中配置的是编辑表单中的模版  
 ```json
 {
-  "form_item_list":[
+  "form_item_list": [
     {
       "label": "工号",
       "key": "user"
     }
-  ], // 搜索筛选项
-  "tool_button_list":[
-    {
-      "button_name": "导入数据", // 按钮名称
-      "handler": "handleInput", // 事件函数名称
-      "icon_component": "ArrowDownCircleOutline" // icon名称
-    } // 工具行
   ],
-  "table_list":[
+  // 搜索筛选项
+  "tool_button_list": [
+    {
+      "button_name": "导入数据",
+      // 按钮名称
+      "handler": "handleInput",
+      // 事件函数名称
+      "icon_component": "ArrowDownCircleOutline"
+      // icon名称
+    }
+    // 工具行
+  ],
+  "table_list": [
     {
       "label": "工号",
       "key": "user"
-    } // jsx中表格字段
-  ]
+    }
+    // jsx中表格字段
+  ],
+  "apiFileName": "", // api的文件名
+  "apiList": [] // 这里的是api配置
 }
 ```
 运行 `index.py `文件，或者执行命令`python index.py`便可以生成代码
@@ -37,7 +45,7 @@
 
 - 搜索筛选项中目前只有 input 模版，后续会加入下拉，时间，部门等常用模版
 - 编辑弹窗也是经常会使用到的功能，后续加入编辑弹窗模版 ✔️
-- api文件以及常用增删改查逻辑等...
+- api文件以及常用增删改查逻辑等... ️✔️查询，删除
 ## 演示
 ![演示gif](./doc/img/18.gif)
 ## 根据配置文件生成的代码展示

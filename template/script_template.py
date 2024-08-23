@@ -15,7 +15,6 @@ script_main_template = Template("""
 <script setup>
 ${import_template}
 
- const searchParams = ref({})
 const columns = ref(createColumns({handleDelete, handleEdit}))
 const minXScroll = computed(() => {
   const cols = columns.value || []
@@ -48,8 +47,10 @@ ${other_template}
 </script>
  """)
 
+
 # 搜索逻辑
-search_template = Template("""
+def search_template(searchHandler):
+    template = Template("""
 /**
  * 搜索相关
  */
@@ -57,7 +58,19 @@ search_template = Template("""
  //   page: 1,
  //   size: 20
  // })
-""")
+    """)
+    if searchHandler:
+        template = Template("""
+/**
+ * 搜索相关
+ */
+ const { loading, tableData, total, searchParams, handleSearch, queryData, resetForm } = usePageSearch(${searchHandler}, {
+   page: 1,
+   size: 20
+ })
+        """)
+    return template.substitute(searchHandler=searchHandler)
+
 
 # 工具函数模版
 tool_handler_template = Template("""

@@ -62,11 +62,17 @@ def script():
         tool_handler_str += tool_handler_template.substitute(handler=item['handler'], handlerName=item['handlerName'])
 
     # 导入搜索模版
-    search_string = search_template.substitute()
+    selected_item = next((x for x in config["apiList"] if x['command'] and x['command'] == 'select'), None)
+    search_string = search_template(selected_item['handlerName'] if selected_item else None)
 
     # 导入主要模版
-    editImport = "import EditModal from './components/EditModal.vue'"
-    script_main_string = script_main_template.substitute(import_template=import_string + editImport,
+    Import = "import EditModal from './components/EditModal.vue'"
+    if selected_item and 'handlerName' in selected_item:
+        import_statement = f"\nimport {selected_item['handlerName']} from '@/api/{config['apiFileName']}.js'"
+    else:
+        import_statement = ''
+    Import = import_statement + Import
+    script_main_string = script_main_template.substitute(import_template=import_string + Import,
                                                          other_template=search_string + tool_handler_str)
     return script_main_string
 
