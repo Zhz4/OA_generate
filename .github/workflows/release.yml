@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # 这个触发器允许手动运行工作流
   push:
     tags:
-      - 'v*.*'  # 只有在推送符合此模式的标签（如 v1.0.0）时，才会触发此工作流
+      - 'v*.*.*'  # 只有在推送符合此模式的标签（如 v1.0.0）时，才会触发此工作流
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     - name: 设置 Python 环境  # 步骤名称：设置 Python 环境
       uses: actions/setup-python@v4  # 使用 GitHub 官方提供的动作，安装并设置 Python
       with:
-        python-version: '3.x'  # 设置所需的 Python 版本（可以根据实际需要调整）
+        python-version: '3.11'  # 设置所需的 Python 版本（可以根据实际需要调整）
 
     - name: 安装依赖  # 步骤名称：安装依赖
       run: pip install pyinstaller  # 安装 PyInstaller 以打包 Python 项目为 .exe 文件
@@ -46,7 +46,7 @@ jobs:
       uses: ncipollo/release-action@v1  # 使用 `ncipollo/release-action` 动作来创建 GitHub Release
       with:
         artifacts: "./dist/index.exe"  # 指定要包含在 Release 中的文件路径
-        token: ${{ secrets.TOKEN }}  # 使用 GitHub 自动提供的令牌来认证
+        token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 自动提供的令牌来认证
         tag: ${{ github.ref_name }}  # 使用当前推送的标签名称（如 v1.0.0）作为 Release 标签
         name: Release ${{ github.ref_name }}  # Release 的名称，使用标签名称
         body: |
