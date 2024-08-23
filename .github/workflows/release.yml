@@ -1,0 +1,54 @@
+name: Build and Release EXE  # 工作流名称
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # 只有在推送符合此模式的标签（如 v1.0.0）时，才会触发此工作流
+
+jobs:
+  build:
+    runs-on: windows-latest  # 指定在 Windows 最新版本上运行（适合打包 .exe 文件）
+
+    steps:
+    - name: 检出代码  # 步骤名称：检出代码
+      uses: actions/checkout@v3  # 使用 GitHub 官方提供的动作，从仓库中检出代码
+
+    - name: 设置 Python 环境  # 步骤名称：设置 Python 环境
+      uses: actions/setup-python@v4  # 使用 GitHub 官方提供的动作，安装并设置 Python
+      with:
+        python-version: '3.x'  # 设置所需的 Python 版本（可以根据实际需要调整）
+
+    - name: 安装依赖  # 步骤名称：安装依赖
+      run: pip install pyinstaller  # 安装 PyInstaller 以打包 Python 项目为 .exe 文件
+
+    - name: 打包 EXE 文件 # 步骤名称：打包 EXE 文件
+      run: pyinstaller --onefile index.py  # 使用 PyInstaller 将 `index.py` 脚本打包成单个 .exe 文件
+
+    - name: 存档 EXE 文件 # 步骤名称：存档 EXE 文件
+      uses: actions/upload-artifact@v3  # 使用 GitHub 官方提供的动作，上传生成的 EXE 文件作为构建产物
+      with:
+        name: app-exe  # 指定产物名称为 `app-exe`
+        path: dist/index.exe  # 指定要存档的文件路径为 `dist/index.exe`
+
+  release:
+    needs: build  # 此步骤依赖于 `build` 任务的完成
+    runs-on: ubuntu-latest  # 指定在 Ubuntu 最新版本上运行
+
+    steps:
+    - name: 下载 EXE 产物  # 步骤名称：下载 EXE 产物
+      uses: actions/download-artifact@v3  # 使用 GitHub 官方提供的动作，下载之前构建的 EXE 文件
+      with:
+        name: app-exe  # 下载名称为 `app-exe` 的产物
+        path: ./dist  # 下载到本地的 `./dist` 目录
+
+    - name: 创建 Release  # 步骤名称：创建 Release
+      uses: ncipollo/release-action@v1  # 使用 `ncipollo/release-action` 动作来创建 GitHub Release
+      with:
+        artifacts: "./dist/index.exe"  # 指定要包含在 Release 中的文件路径
+        token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 自动提供的令牌来认证
+        tag: ${{ github.ref_name }}  # 使用当前推送的标签名称（如 v1.0.0）作为 Release 标签
+        name: Release ${{ github.ref_name }}  # Release 的名称，使用标签名称
+        body: |
+          自动生成的 EXE 文件。  # Release 的描述内容
+        draft: false  # 是否保存为草稿，false 表示直接发布
+        prerelease: false  # 是否为预发布版本，false 表示正式发布
