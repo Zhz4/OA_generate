@@ -50,3 +50,7 @@
 ![演示gif](./doc/img/18.gif)
 ## 根据配置文件生成的代码展示
 [查看代码](./doc/demoCode.md)
+
+## node 版本
+[点击查看](https://github.com/Zhz4/OA_generate_node)
+
